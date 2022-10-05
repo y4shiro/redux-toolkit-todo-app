@@ -5,9 +5,11 @@ import Header from './components/Header';
 
 const App: React.FC = () => {
   return (
-    <div>
-      <Header />
-      App
+    <div className={styles.root}>
+      <div className={styles.wrapper}>
+        <Header />
+        <p>hello</p>
+      </div>
     </div>
   );
 };
