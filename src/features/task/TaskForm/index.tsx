@@ -2,7 +2,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import TextField from '@mui/material/TextField';
-import { selectSelectedTask, createTask, handleModalOpen } from '../taskSlice';
+import { selectSelectedTask, editTask, createTask, handleModalOpen } from '../taskSlice';
 
 import styles from './index.module.scss';
 
@@ -26,6 +26,9 @@ const index: React.FC<Props> = ({ isEdited }) => {
   };
 
   const handleEdit = (data: InputType) => {
+    const sendData = { ...selectedTask, title: data.taskTitle };
+    dispatch(editTask(sendData));
+    dispatch(handleModalOpen(false));
     console.log(data);
   };
 
