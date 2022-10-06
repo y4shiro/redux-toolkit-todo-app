@@ -1,5 +1,5 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { RootState, AppThunk } from '../../app/store';
+import { createSlice } from '@reduxjs/toolkit';
+import { RootState } from '../../app/store';
 
 export type TaskState = {
   idCount: number; // Task の個数
