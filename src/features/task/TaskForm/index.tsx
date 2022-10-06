@@ -1,6 +1,8 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import TextField from '@mui/material/TextField';
+import { createTask } from '../taskSlice';
 
 import styles from './index.module.scss';
 
@@ -9,10 +11,12 @@ type InputType = {
 };
 
 const index: React.FC = () => {
+  const dispatch = useDispatch();
   const { register, handleSubmit, reset } = useForm();
 
   const handleCreate = (data: InputType) => {
     console.log(data);
+    dispatch(createTask(data.taskTitle));
     reset();
   };
 
