@@ -1,6 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Checkbox, Modal } from '@mui/material';
 import { EventNote, Edit, Delete } from '@mui/icons-material';
+
+import { handleModalOpen, selectIsModalOpen } from '../taskSlice';
 import styles from './index.module.scss';
 import TaskForm from '../TaskForm';
 
@@ -9,9 +12,11 @@ type Props = {
 };
 
 const index: React.FC<Props> = ({ task }) => {
-  const [open, setOpen] = useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+  const isModalOpen = useSelector(selectIsModalOpen);
+  const dispatch = useDispatch();
+
+  const handleOpen = () => dispatch(handleModalOpen(true));
+  const handleClose = () => dispatch(handleModalOpen(false));
 
   return (
     <div className={styles.root}>
@@ -34,7 +39,7 @@ const index: React.FC<Props> = ({ task }) => {
         </button>
       </div>
 
-      <Modal open={open} onClose={handleClose} className={styles.modal}>
+      <Modal open={isModalOpen} onClose={handleClose} className={styles.modal}>
         <div className={styles.modal_content}>
           <div className={styles.modal_title}>Edit</div>
           <TaskForm isEdited />
