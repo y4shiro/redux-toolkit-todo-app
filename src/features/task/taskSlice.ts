@@ -24,9 +24,15 @@ export const taskSlice = createSlice({
       const newTask = { id: state.idCount, title: action.payload, completed: false };
       state.tasks = [newTask, ...state.tasks];
     },
+
+    handleModalOpen: (state, action) => {
+      state.isModalOpen = action.payload;
+    },
   },
 });
 
-export const { createTask } = taskSlice.actions;
+export const { createTask, handleModalOpen } = taskSlice.actions;
 export const selectTask = (state: RootState): TaskState['tasks'] => state.task.tasks;
+export const selectIsModalOpen = (state: RootState): TaskState['isModalOpen'] =>
+  state.task.isModalOpen;
 export default taskSlice.reducer;
