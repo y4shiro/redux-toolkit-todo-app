@@ -24,15 +24,23 @@ const index: React.FC<Props> = ({ isEdited }) => {
     reset();
   };
 
+  const handleEdit = (data: InputType) => {
+    console.log(data);
+  };
+
   return (
     <div className={styles.root}>
-      <form onSubmit={handleSubmit(handleCreate)} className={styles.form}>
+      <form
+        onSubmit={isEdited ? handleSubmit(handleEdit) : handleSubmit(handleCreate)}
+        className={styles.form}
+      >
         <TextField
           {...register('taskTitle')}
-          name='taskTitle'
           id='outlined-basic'
           label={isEdited ? 'Edit Task' : 'New Task'}
+          defaultValue={isEdited ? 'defaultValue' : ''}
           variant='outlined'
+          name='taskTitle'
           className={styles.text_field}
         />
         {isEdited ? (
