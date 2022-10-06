@@ -30,6 +30,10 @@ export const taskSlice = createSlice({
       const task = state.tasks.find((t) => t.id === action.payload.id);
       if (task) task.title = action.payload.title;
     },
+    // タスクの削除
+    deleteTask: (state, action) => {
+      state.tasks = state.tasks.filter((t) => t.id !== action.payload.id);
+    },
     // どのタスクを選択しているかを管理
     selectTask: (state, action) => {
       state.selectedTask = action.payload;
@@ -46,7 +50,7 @@ export const taskSlice = createSlice({
   },
 });
 
-export const { createTask, editTask, selectTask, handleModalOpen, completeTask } =
+export const { createTask, editTask, deleteTask, selectTask, handleModalOpen, completeTask } =
   taskSlice.actions;
 export const selectTasks = (state: RootState): TaskState['tasks'] => state.task.tasks;
 export const selectIsModalOpen = (state: RootState): TaskState['isModalOpen'] =>

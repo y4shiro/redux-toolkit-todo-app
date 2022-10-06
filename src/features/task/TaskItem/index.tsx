@@ -3,7 +3,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Checkbox, Modal } from '@mui/material';
 import { EventNote, Edit, Delete } from '@mui/icons-material';
 
-import { selectTask, handleModalOpen, selectIsModalOpen, completeTask } from '../taskSlice';
+import {
+  deleteTask,
+  selectTask,
+  handleModalOpen,
+  selectIsModalOpen,
+  completeTask,
+} from '../taskSlice';
 import styles from './index.module.scss';
 import TaskForm from '../TaskForm';
 
@@ -37,7 +43,10 @@ const index: React.FC<Props> = ({ task }) => {
         <button onClick={() => handleOpen()} className={styles.edit_button}>
           <Edit className={styles.icon} />
         </button>
-        <button onClick={() => console.log(`delete ${task.id}`)} className={styles.delete_button}>
+        <button
+          onClick={() => console.log(dispatch(deleteTask(task)))}
+          className={styles.delete_button}
+        >
           <Delete className={styles.icon} />
         </button>
       </div>
