@@ -1,8 +1,8 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import TextField from '@mui/material/TextField';
-import { createTask, handleModalOpen } from '../taskSlice';
+import { selectSelectedTask, createTask, handleModalOpen } from '../taskSlice';
 
 import styles from './index.module.scss';
 
@@ -17,6 +17,7 @@ type Props = {
 const index: React.FC<Props> = ({ isEdited }) => {
   const dispatch = useDispatch();
   const { register, handleSubmit, reset } = useForm();
+  const selectedTask = useSelector(selectSelectedTask);
 
   const handleCreate = (data: InputType) => {
     console.log(data);
@@ -38,7 +39,7 @@ const index: React.FC<Props> = ({ isEdited }) => {
           {...register('taskTitle')}
           id='outlined-basic'
           label={isEdited ? 'Edit Task' : 'New Task'}
-          defaultValue={isEdited ? 'defaultValue' : ''}
+          defaultValue={isEdited ? selectedTask.title : ''}
           variant='outlined'
           name='taskTitle'
           className={styles.text_field}
