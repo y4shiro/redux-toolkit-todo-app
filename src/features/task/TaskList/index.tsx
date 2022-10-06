@@ -1,12 +1,12 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { selectTask } from '../taskSlice';
+import { selectTasks } from '../taskSlice';
 
 import TaskItem from '../TaskItem';
 import styles from './index.module.scss';
 
 const index: React.FC = () => {
-  const tasks = useSelector(selectTask);
+  const tasks = useSelector(selectTasks);
 
   return (
     <div className={styles.root}>
