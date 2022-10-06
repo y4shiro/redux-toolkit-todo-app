@@ -10,7 +10,11 @@ type InputType = {
   taskTitle?: string;
 };
 
-const index: React.FC = () => {
+type Props = {
+  isEdited?: boolean;
+};
+
+const index: React.FC<Props> = ({ isEdited }) => {
   const dispatch = useDispatch();
   const { register, handleSubmit, reset } = useForm();
 
@@ -27,10 +31,20 @@ const index: React.FC = () => {
           {...register('taskTitle')}
           name='taskTitle'
           id='outlined-basic'
-          label='New Task'
+          label={isEdited ? 'Edit Task' : 'New Task'}
           variant='outlined'
           className={styles.text_field}
         />
+        {isEdited ? (
+          <div className={styles.button_wrapper}>
+            <button type='submit' className={styles.submit_button}>
+              Submit
+            </button>
+            <button type='button' className={styles.cancel_button}>
+              Cancel
+            </button>
+          </div>
+        ) : null}
       </form>
     </div>
   );

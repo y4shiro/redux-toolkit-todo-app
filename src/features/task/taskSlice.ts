@@ -12,7 +12,7 @@ const initialState: TaskState = {
   idCount: 1,
   tasks: [{ id: 1, title: 'TaskA', completed: false }],
   selectedTask: { id: 0, title: '', completed: false },
-  isModalOpen: false,
+  isModalOpen: true,
 };
 
 export const taskSlice = createSlice({
